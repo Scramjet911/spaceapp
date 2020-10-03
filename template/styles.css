@@ -1,0 +1,26 @@
+.icon {
+  height: 3em;
+  width: 3em;
+  display: block;
+}
+table tbody tr td {
+  vertical-align: middle;
+}
+
+.recent {
+  width: 20%;
+}
+
+.recent-text {
+  margin-bottom: 20px;
+}
+
+.recent-btn {
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 0) {
+  .col-3 {
+    flex: none;
+  }
+}
