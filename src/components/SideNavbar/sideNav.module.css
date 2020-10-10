@@ -1,0 +1,11 @@
+.phases tbody tr td  {
+    vertical-align: middle;
+}
+
+
+@media only screen and (min-width: 0) {
+    .col-3 {
+      flex: none;
+    }
+}
+  

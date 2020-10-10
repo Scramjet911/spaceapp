@@ -1,16 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import style from "./eventLog.module.css";
-import PlanPhase from "./firstPhase"
+import FirstPhase from "./firstPhase";
 
 export default class EventLog extends Component {
   state = {
     currPhase: 0,
     currSubPhase: 0,
-    phaseOneSelection: [-1, -1, -1],
+    phaseOneSelection: [-1, -1, -1, -1],
   };
-
-  onSelect = (e, index) => {
-    // console.log(e.target);
+  constructor(props) {
+    super(props);
+    this.containerEnd = createRef();
+  }
+  onSelect = (e, index, cost) => {
     e.target.style.backgroundColor = "#C1FFBF";
     if (this.state.currPhase === 0) {
       this.setState((prevstate) => {
@@ -35,6 +37,7 @@ export default class EventLog extends Component {
         };
       });
     }
+    this.props.updateFund(cost);
   };
 
   isDisabled = (index) => {
@@ -43,13 +46,17 @@ export default class EventLog extends Component {
     }
     return true;
   };
+
+  componentDidUpdate() {
+    this.containerEnd.scrollIntoView({ behavior: "smooth" });
+  }
   render() {
     let firstPhase = [];
     for (let i = 0; i < 4; i++) {
       firstPhase.push(
         this.state.currSubPhase >= i && (
           <div key={i}>
-            <PlanPhase
+            <FirstPhase
               subPhase={i}
               onSelect={this.onSelect}
               isDisabled={this.isDisabled(i)}
@@ -61,6 +68,11 @@ export default class EventLog extends Component {
     return (
       <div className={style["wrapper"]}>
         {this.state.currPhase === 0 && firstPhase}
+        <div
+          ref={(el) => {
+            this.containerEnd = el;
+          }}
+        ></div>
       </div>
     );
   }

@@ -8,10 +8,17 @@ let firstPhaseOptions = [
 ];
 
 let firstPhaseOptDescription = [
-  ["Blah", "Vega graphics suck", "PSLV boooo"],
+  ["Blah", "Vega graphics suck", "PSLV boooo Cost = 200"],
   ["Blah", "Vega graphics suck"],
   ["Blah", "Vega graphics suck"],
   ["Blah", "Vega sucks"],
+];
+
+let firstPhaseCosts = [
+  [100, 200, 300],
+  [100, 200],
+  [100, 200],
+  [100, 200],
 ];
 
 let firstPhaseDescription = [
@@ -23,16 +30,20 @@ let firstPhaseDescription = [
   `Fuel count`,
 ];
 
-export default class PlanPhase extends Component {
+export default class FirstPhase extends Component {
   constructor(props) {
     super(props);
     this.sliderValue = createRef();
+    this.fuelValue = createRef();
   }
 
-  sliderChange = (e)=>{
+  sliderChange = (e) => {
     console.log(this.sliderValue.current);
-    this.sliderValue.current.innerHTML = e.target.value;
-  }
+    this.sliderValue.current.innerHTML = (e.target.value * 4).toLocaleString();
+    this.fuelValue.current.innerHTML = (
+      e.target.value * 14500
+    ).toLocaleString();
+  };
   render() {
     return (
       <>
@@ -48,7 +59,7 @@ export default class PlanPhase extends Component {
             </tbody>
           </table>
         </div>
-        <table>
+        <table className={style["phases"]}>
           <tbody>
             {this.props.subPhase === 3 && (
               <tr>
@@ -59,14 +70,23 @@ export default class PlanPhase extends Component {
                       min="0"
                       max="100"
                       // value="50"
-                      onChange={(e) =>
-                        this.sliderChange(e)
-                      }
+                      onChange={(e) => this.sliderChange(e)}
                       className={style.slider}
                     />
                     <p>
-                      Value: <span ref={this.sliderValue}>50</span>
+                      Cost: <span ref={this.sliderValue}>200</span>
                     </p>
+                    <p>
+                      Amount Of Fuel: <span ref={this.fuelValue}>725,000</span>
+                    </p>
+                    <button
+                      className={style["slider-btn"]}
+                      onClick={(e) =>
+                        this.props.onSelect(e, this.sliderValue.current.innerHTML)
+                      }
+                    >
+                      Proceed
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -77,7 +97,13 @@ export default class PlanPhase extends Component {
                   <tr key={index}>
                     <td>
                       <button
-                        onClick={(e) => this.props.onSelect(e, index)}
+                        onClick={(e) =>
+                          this.props.onSelect(
+                            e,
+                            index,
+                            firstPhaseCosts[this.props.subPhase][index]
+                          )
+                        }
                         disabled={this.props.isDisabled}
                       >
                         {opt}
@@ -86,6 +112,12 @@ export default class PlanPhase extends Component {
                     <td>
                       <p>
                         {firstPhaseOptDescription[this.props.subPhase][index]}
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        {"Cost : " +
+                          firstPhaseCosts[this.props.subPhase][index]}
                       </p>
                     </td>
                   </tr>
