@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/spaceapp/static/css/main.f541148e.chunk.css",
+    "main.js": "/spaceapp/static/js/main.8e69bfab.chunk.js",
+    "main.js.map": "/spaceapp/static/js/main.8e69bfab.chunk.js.map",
+    "runtime-main.js": "/spaceapp/static/js/runtime-main.74fb6372.js",
+    "runtime-main.js.map": "/spaceapp/static/js/runtime-main.74fb6372.js.map",
+    "static/js/2.70bb85cc.chunk.js": "/spaceapp/static/js/2.70bb85cc.chunk.js",
+    "static/js/2.70bb85cc.chunk.js.map": "/spaceapp/static/js/2.70bb85cc.chunk.js.map",
+    "index.html": "/spaceapp/index.html",
+    "precache-manifest.75c60001a73b2765dcf36dab852847a1.js": "/spaceapp/precache-manifest.75c60001a73b2765dcf36dab852847a1.js",
+    "service-worker.js": "/spaceapp/service-worker.js",
+    "static/css/main.f541148e.chunk.css.map": "/spaceapp/static/css/main.f541148e.chunk.css.map",
+    "static/js/2.70bb85cc.chunk.js.LICENSE.txt": "/spaceapp/static/js/2.70bb85cc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.74fb6372.js",
+    "static/js/2.70bb85cc.chunk.js",
+    "static/css/main.f541148e.chunk.css",
+    "static/js/main.8e69bfab.chunk.js"
+  ]
+}
